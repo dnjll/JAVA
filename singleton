@@ -1,0 +1,19 @@
+public class A {
+	private static A a;
+	
+	private A() {}
+	
+	public static A a() {
+		if(null == a) {
+			a = new  A();
+		}
+		return a;
+	}
+}
+
+public class singleton {
+	
+	public static void main(String[] args) {
+		A.a();	
+	}
+}
