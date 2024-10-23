@@ -21,15 +21,15 @@ class Printer {
 				numOfPapers = 0;
 			}
 		} else if (numOfPapers != 0 && !duplex) {
-            if(numOfPapers > amount) {
-                numOfPapers -= amount;
-                System.out.printf("단면으로 %d장 출력했습니다. 현재 %d장 남아있습니다.\n", amount, numOfPapers);
-            } else {
-                System.out.printf("단면으로 모두 출력하려면 용지가 %d매 부족합니다. %d장만 출력합니다.\n", amount - numOfPapers, numOfPapers);
-                numOfPapers = 0;
-            }
+			if (numOfPapers > amount) {
+				numOfPapers -= amount;
+				System.out.printf("단면으로 %d장 출력했습니다. 현재 %d장 남아있습니다.\n", amount, numOfPapers);
+			} else {
+				System.out.printf("단면으로 모두 출력하려면 용지가 %d매 부족합니다. %d장만 출력합니다.\n", amount - numOfPapers, numOfPapers);
+				numOfPapers = 0;
+			}
 		} else {
-		    System.out.println("용지가 없습니다.");
+			System.out.println("용지가 없습니다.");
 		}
 
 	}
@@ -43,7 +43,7 @@ class Printer {
 	}
 }
 
-public class Main {
+public class PrinterDemo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Printer p = new Printer(20, true);
