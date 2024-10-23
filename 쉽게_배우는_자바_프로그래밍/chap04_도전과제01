@@ -1,0 +1,33 @@
+package test;
+
+class Printer {
+	private int numOfPapers = 0;
+
+	public Printer(int mount) {
+		numOfPapers = mount;
+	}
+
+	public void print(int p) {
+		if (numOfPapers == 0) {
+			System.out.printf("용지가 없습니다.\n");
+		} else if (numOfPapers < p) {
+			System.out.printf("모두 출력하려면 용지가 %d매 부족합니다. %d장만 출력합니다.\n", p - numOfPapers, numOfPapers);
+			numOfPapers = 0;
+		} else {
+			System.out.printf("%d장 출력했습니다. 현재 %d장 남아 있습니다.\n", p, numOfPapers - p);
+			numOfPapers -= p;
+		}
+	}
+}
+
+public class PrinterTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Printer p = new Printer(10);
+		p.print(2);
+		p.print(20);
+		p.print(10);
+	}
+
+}
