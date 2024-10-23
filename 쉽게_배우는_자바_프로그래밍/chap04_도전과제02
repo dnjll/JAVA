@@ -1,0 +1,55 @@
+class Printer {
+	private int numOfPapers;
+	private boolean duplex;
+
+	public Printer(int numOfPapers, boolean duplex) {
+		this.numOfPapers = numOfPapers;
+		setDuplex(duplex);
+	}
+
+	public void print(int amount) {
+		getDuplex();
+		if (numOfPapers != 0 && duplex) {
+			int print = amount / 2 + 1;
+			if (numOfPapers > (amount / 2 + 1)) {
+				numOfPapers -= print;
+				System.out.printf("양면으로 %d장 출력했습니다. 현재 %d장 남아 있습니다.\n", print, numOfPapers);
+
+			} else {
+				System.out.printf("양면으로 모두 출력하려면 용지가 %d매 부족합니다. %d장만 출력합니다.\n", Math.abs(numOfPapers - print),
+						numOfPapers);
+				numOfPapers = 0;
+			}
+		} else if (numOfPapers != 0 && !duplex) {
+            if(numOfPapers > amount) {
+                numOfPapers -= amount;
+                System.out.printf("단면으로 %d장 출력했습니다. 현재 %d장 남아있습니다.\n", amount, numOfPapers);
+            } else {
+                System.out.printf("단면으로 모두 출력하려면 용지가 %d매 부족합니다. %d장만 출력합니다.\n", amount - numOfPapers, numOfPapers);
+                numOfPapers = 0;
+            }
+		} else {
+		    System.out.println("용지가 없습니다.");
+		}
+
+	}
+
+	public boolean getDuplex() {
+		return duplex;
+	}
+
+	public void setDuplex(Boolean duplex) {
+		this.duplex = duplex;
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Printer p = new Printer(20, true);
+		p.print(25);
+		p.setDuplex(false);
+		p.print(10);
+		p.print(3);
+	}
+}
