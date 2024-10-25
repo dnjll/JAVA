@@ -1,0 +1,18 @@
+package exercise;
+
+public class ExceptionFirst {
+	public static void main(String[] args) {
+		System.out.println(sumExceptionFirst(1, 2, 3, 4));
+		int arr[] = { 2, 3 };
+		System.out.println(sumExceptionFirst(1, arr));
+		System.out.println(sumExceptionFirst(1, 2, 3, 4, 5));
+	}
+
+	static int sumExceptionFirst(int first, int... nums) {
+		int sum = 0;
+		for (int num : nums) {
+			sum += num;
+		}
+		return sum;
+	}
+}
