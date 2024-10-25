@@ -33,3 +33,37 @@ enum weekOfDay {
 		return s;
 	}
 }
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+package exercise;
+
+import java.util.Scanner;
+
+public class weekPreference {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		String s = in.next();
+
+		switch (s.toUpperCase()) {
+		case "MONDAY" -> System.out.println("월요일은 싫다.");
+		case "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY" ->
+			System.out.println(WeekOfDay.valueOf(s.toUpperCase()) + "은 그저 그렇다.");
+		case "SATURDAY", "SUNDAY" -> System.out.println(WeekOfDay.valueOf(s.toUpperCase()) + "은 최고.");
+		default -> System.out.println("유효하지 않은 입력입니다.");
+		}
+	}
+}
+
+enum WeekOfDay {
+	MONDAY("월요일"), TUESDAY("화요일"), WEDNESDAY("수요일"), THURSDAY("목요일"), FRIDAY("금요일"), SATURDAY("토요일"), SUNDAY("일요일");
+
+	private String s;
+
+	WeekOfDay(String s) {
+		this.s = s;
+	}
+
+	public String toString() {
+		return s;
+	}
+}
