@@ -1,0 +1,81 @@
+package exercise;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Minesweeper {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		// 사용자로부터 입력 받기
+		System.out.print("행의 수 (m): ");
+		int m = scanner.nextInt();
+		System.out.print("열의 수 (n): ");
+		int n = scanner.nextInt();
+		System.out.print("지뢰 비율 (p, 예: 0.3): ");
+		double p = scanner.nextDouble();
+
+		char[][] board = new char[m][n];
+		int[][] neighborCounts = new int[m][n];
+
+		Random random = new Random();
+
+		// 1. 지뢰 숨기기
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (random.nextDouble() < p) {
+					board[i][j] = '*'; // 지뢰 숨김
+				} else {
+					board[i][j] = '-'; // 지뢰 없음
+				}
+			}
+		}
+
+		// 2. 이웃한 지뢰 개수 계산
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (board[i][j] == '*') {
+					// 이웃한 모든 위치에 대해
+					for (int x = -1; x <= 1; x++) {
+						for (int y = -1; y <= 1; y++) {
+							if (x == 0 && y == 0)
+								continue; // 자기 자신은 제외
+							int newX = i + x;
+							int newY = j + y;
+							if (newX >= 0 && newX < m && newY >= 0 && newY < n) {
+								neighborCounts[newX][newY]++;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// 3. 결과 출력
+		System.out.println("지뢰 숨긴 배열:");
+		printBoard(board);
+
+		System.out.println("\n이웃한 지뢰 개수 배열:");
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (board[i][j] == '*') {
+					System.out.print("* ");
+				} else {
+					System.out.print(neighborCounts[i][j] + " ");
+				}
+			}
+			System.out.println();
+		}
+
+		scanner.close();
+	}
+
+	private static void printBoard(char[][] board) {
+		for (char[] row : board) {
+			for (char cell : row) {
+				System.out.print(cell + " ");
+			}
+			System.out.println();
+		}
+	}
+}
